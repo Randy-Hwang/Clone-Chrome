@@ -1,5 +1,5 @@
 // 그냥 #clock만 적어도 무방하고, h2#clock으로 적어도 무방함.
-const clock = document.querySelector("h2#clock");
+const clock = document.querySelector("clock");
 
 // 시:분:초를 보여주는 시계 함수
 function getClock() {
