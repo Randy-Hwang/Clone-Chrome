@@ -8,6 +8,8 @@
     <title>Document</title>
   </head>
   <body>
+    <!-- 시계 -->
+    <h2 id="clock"></h2>
     <!-- 로그인폼. 이미 로그인된 아이디가 있을 경우 greeting이 보여진다 -->
     <form class="hidden" id="login-form">
       <!-- required = 필수 입력 항목
@@ -20,8 +22,7 @@
       />
       <button>Log In</button>
     </form>
-    <!-- 시계 -->
-    <h2 id="clock"></h2>
+
     <!-- 로그인되었을 때 나오는 greetings -->
     <h1 id="greeting" class="hidden"></h1>
     <!-- todo list -->
@@ -34,11 +35,17 @@
       <span></span>
       <span></span>
     </div>
+    <!-- 날씨  -->
+    <div id="weather">
+      <span></span>
+      <span></span>
+    </div>
     <!-- javascript imports -->
     <script src="./js/clock.js"></script>
     <script src="./js/greetings.js"></script>
     <script src="./js/quotes.js"></script>
     <script src="./js/background.js"></script>
     <script src="./js/todo.js"></script>
+    <script src="./js/weather.js"></script>
   </body>
 </html>

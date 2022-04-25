@@ -20,12 +20,19 @@ function handleToDoSubmit(event) {
   const newToDo = toDoInput.value;
   toDoInput.value = "";
 
+  // 로컬스토리지에 추가할 투두.
+  // 삭제를 용이하게 하기위해 고유한 아이디가 필요.
+  const newToDoObj = {
+    text: newToDo,
+    id: Date.now(),
+  };
+
   // 저장과 불러오기를 위해 투두를 배열에 추가
-  toDos.push(newToDo);
+  toDos.push(newToDoObj);
 
   // 저장 후에 투두리스트가 브라우저에 나타나도록 함수 호출
   // + 로컬스토리지에 저장하도록 함수 호출
-  paintToDo(newToDo);
+  paintToDo(newToDoObj);
   saveToDo();
 }
 
@@ -33,11 +40,12 @@ function handleToDoSubmit(event) {
 function paintToDo(newToDo) {
   // li를 만들고 그 안에 span을 이용하여 요소를 만들어줄 것임. 삭제버튼도 만들 것이기 때문!
   const li = document.createElement("li");
+  li.id = newToDo.id;
   const span = document.createElement("span");
 
   // span에 내가 입력한 투두 입력
   // 삭제 기능을 위한 X버튼 추가
-  span.innerText = newToDo;
+  span.innerText = newToDo.text;
   const button = document.createElement("button");
   button.innerText = "❌";
   button.addEventListener("click", delTodo);
@@ -55,8 +63,10 @@ function delTodo(event) {
   // 이벤트가 발생한 타겟의 부모에게 접근 -> 타겟의 부모는 span과 button을 가지고 있는 li.
   const deleteLi = event.target.parentElement;
 
-  // 그 li를 삭제하는 것.
+  // 삭제 + 로컬스토리지에서도 해당 id를 삭제해야 함
   deleteLi.remove();
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(deleteLi.id));
+  saveToDo();
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
