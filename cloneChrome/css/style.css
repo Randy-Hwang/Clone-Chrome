@@ -3,3 +3,7 @@ class로 hidden을 부여한다! */
 .hidden {
   display: none;
 }
+
+#weather-icon {
+  width: 30px;
+}

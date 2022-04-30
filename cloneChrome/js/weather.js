@@ -7,9 +7,12 @@ function geoOk(position) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const weather = document.querySelector("#weather span:first-child");
-      const city = document.querySelector("#weather span:last-child");
-      city.innerText = data.name;
+      const city = document.querySelector("#weather span:first-child");
+      const weather = document.querySelector("#weather span:nth-child(2)");
+      const weatherIconCode = data.weather[0].icon;
+      const weatherIcon = document.getElementById("weather-icon");
+      weatherIcon.src = `img/icons/${weatherIconCode}.png`;
+      city.innerText = data.sys.country;
       weather.innerText = data.weather[0].main;
     });
 }
